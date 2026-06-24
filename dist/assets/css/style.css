@@ -1,0 +1,14 @@
+/* RS Taman Harapan Baru - Custom Styles */
+
+:root {
+    --primary: #0066cc;
+    --primary-dark: #0052a3;
+    --light: #f8f9fa;
+    --dark: #1a1a2e;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* You can add your custom styles here */
