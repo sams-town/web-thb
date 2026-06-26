@@ -1,9 +1,39 @@
 <?php
 // Configuration and Helpers
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'rsthb2025');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+
+// Detect environment automatically (localhost vs production cPanel)
+$isLocal = false;
+if (isset($_SERVER['HTTP_HOST'])) {
+    $host = $_SERVER['HTTP_HOST'];
+    if ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, '192.168.') === 0) {
+        $isLocal = true;
+    }
+} else {
+    // CLI mode: check path to determine if it is local development
+    $dir = __DIR__;
+    if (strpos($dir, 'd:\\wwwww') !== false || strpos($dir, 'C:\\') !== false || strpos($dir, 'D:\\') !== false) {
+        $isLocal = true;
+    }
+}
+
+// Load local override file if exists (should be added to .gitignore)
+if (file_exists(__DIR__ . '/config.local.php')) {
+    include_once __DIR__ . '/config.local.php';
+}
+
+if ($isLocal) {
+    if (!defined('DB_HOST')) define('DB_HOST', 'localhost');
+    if (!defined('DB_NAME')) define('DB_NAME', 'rsthb2025');
+    if (!defined('DB_USER')) define('DB_USER', 'root');
+    if (!defined('DB_PASS')) define('DB_PASS', '');
+} else {
+    // Production (cPanel)
+    if (!defined('DB_HOST')) define('DB_HOST', 'localhost');
+    if (!defined('DB_NAME')) define('DB_NAME', 'rsthbid_admin');
+    if (!defined('DB_USER')) define('DB_USER', 'rs_thb.admin');
+    if (!defined('DB_PASS')) define('DB_PASS', 'samboja90');
+}
+
 
 // Brand Colors (from logo)
 define('BRAND_PRIMARY', '#0F766E');
