@@ -13,6 +13,7 @@ try {
         'maps_embed' => "TEXT NULL AFTER contact_address",
         'social_facebook' => "VARCHAR(255) DEFAULT '#' AFTER maps_embed",
         'social_instagram' => "VARCHAR(255) DEFAULT '#' AFTER social_facebook",
+        'social_tiktok' => "VARCHAR(255) DEFAULT '#' AFTER social_instagram",
         'social_twitter' => "VARCHAR(255) DEFAULT '#' AFTER social_instagram",
         'social_youtube' => "VARCHAR(255) DEFAULT '#' AFTER social_twitter",
         'seo_meta_title' => "VARCHAR(255) NULL AFTER theme_color_accent",

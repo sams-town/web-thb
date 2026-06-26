@@ -676,7 +676,7 @@ function isSectionVisible($key, $sections) {
                     <a href="<?php echo htmlspecialchars($settings['social_instagram'] ?? '#'); ?>" target="_blank">
                         <i class="bi bi-instagram me-1"></i> @rsthb
                     </a>
-                    <a href="#" target="_blank">
+                    <a href="<?php echo htmlspecialchars($settings['social_tiktok'] ?? '#'); ?>" target="_blank">
                         <i class="bi bi-tiktok me-1"></i> @rsthb.id
                     </a>
                 </div>

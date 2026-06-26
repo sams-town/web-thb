@@ -55,10 +55,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
             $secondaryColor = $_POST['secondary_color'] ?? '#0E6B73';
             $accentColor = $_POST['accent_color'] ?? '#D8A24A';
             $mapsEmbed = $_POST['maps_embed'] ?? '';
-            $fb = $_POST['social_facebook'] ?? '#';
             $ig = $_POST['social_instagram'] ?? '#';
+            $tiktok = $_POST['social_tiktok'] ?? '#';
             $tw = $_POST['social_twitter'] ?? '#';
-            $yt = $_POST['social_youtube'] ?? '#';
+
+            // Clean up accidental '#' prefix (e.g. #https://...)
+            if (strpos($ig, '#http') === 0) $ig = substr($ig, 1);
+            if (strpos($tiktok, '#http') === 0) $tiktok = substr($tiktok, 1);
+            if (strpos($tw, '#http') === 0) $tw = substr($tw, 1);
+
             $navbarSticky = isset($_POST['navbar_sticky']) ? 1 : 0;
 
             $seoMetaTitle = $_POST['seo_meta_title'] ?? '';
@@ -68,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
             $logoUrl = uploadFile($_FILES['logo_image'] ?? null, 'logo');
             $faviconUrl = uploadFile($_FILES['favicon_image'] ?? null, 'logo');
 
-            $sql = "UPDATE web_settings SET hospital_name=?, contact_phone=?, contact_email=?, contact_address=?, wa_number=?, theme_color_primary=?, theme_color_secondary=?, theme_color_accent=?, navbar_sticky=?, maps_embed=?, social_facebook=?, social_instagram=?, social_twitter=?, social_youtube=?, seo_meta_title=?, seo_meta_description=?, seo_meta_keywords=?";
-            $params = [$hospitalName, $contactPhone, $contactEmail, $contactAddress, $waNumber, $primaryColor, $secondaryColor, $accentColor, $navbarSticky, $mapsEmbed, $fb, $ig, $tw, $yt, $seoMetaTitle, $seoMetaDescription, $seoMetaKeywords];
+            $sql = "UPDATE web_settings SET hospital_name=?, contact_phone=?, contact_email=?, contact_address=?, wa_number=?, theme_color_primary=?, theme_color_secondary=?, theme_color_accent=?, navbar_sticky=?, maps_embed=?, social_instagram=?, social_tiktok=?, social_twitter=?, seo_meta_title=?, seo_meta_description=?, seo_meta_keywords=?";
+            $params = [$hospitalName, $contactPhone, $contactEmail, $contactAddress, $waNumber, $primaryColor, $secondaryColor, $accentColor, $navbarSticky, $mapsEmbed, $ig, $tiktok, $tw, $seoMetaTitle, $seoMetaDescription, $seoMetaKeywords];
 
             if ($logoUrl) {
                 $sql .= ", logo_url=?";
@@ -1315,10 +1320,9 @@ exit;
                         <div class="card p-4 mb-4">
                             <h6 class="fw-bold mb-3"><i class="bi bi-globe me-2"></i> Social Media</h6>
                             <div class="row g-3">
-                                <div class="col-md-3"><label class="form-label fw-bold">Facebook</label><input type="text" class="form-control" name="social_facebook" value="<?php echo htmlspecialchars($settings['social_facebook']); ?>"></div>
-                                <div class="col-md-3"><label class="form-label fw-bold">Instagram</label><input type="text" class="form-control" name="social_instagram" value="<?php echo htmlspecialchars($settings['social_instagram']); ?>"></div>
-                                <div class="col-md-3"><label class="form-label fw-bold">Twitter</label><input type="text" class="form-control" name="social_twitter" value="<?php echo htmlspecialchars($settings['social_twitter']); ?>"></div>
-                                <div class="col-md-3"><label class="form-label fw-bold">YouTube</label><input type="text" class="form-control" name="social_youtube" value="<?php echo htmlspecialchars($settings['social_youtube']); ?>"></div>
+                                <div class="col-md-4"><label class="form-label fw-bold">Instagram</label><input type="text" class="form-control" name="social_instagram" value="<?php echo htmlspecialchars($settings['social_instagram'] ?? '#'); ?>"></div>
+                                <div class="col-md-4"><label class="form-label fw-bold">TikTok</label><input type="text" class="form-control" name="social_tiktok" value="<?php echo htmlspecialchars($settings['social_tiktok'] ?? '#'); ?>"></div>
+                                <div class="col-md-4"><label class="form-label fw-bold">Twitter</label><input type="text" class="form-control" name="social_twitter" value="<?php echo htmlspecialchars($settings['social_twitter'] ?? '#'); ?>"></div>
                             </div>
                         </div>
                         <div class="card p-4 mb-4">

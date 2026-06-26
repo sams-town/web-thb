@@ -90,6 +90,9 @@ function getSettings() {
             'theme_color_secondary' => BRAND_SECONDARY,
             'theme_color_accent' => BRAND_ACCENT,
             'navbar_sticky' => 1,
+            'social_instagram' => '#',
+            'social_tiktok' => '#',
+            'social_twitter' => '#',
             'seo_meta_title' => 'RS Taman Harapan Baru - Rumah Sakit Terpercaya',
             'seo_meta_description' => 'RS Taman Harapan Baru menyediakan pelayanan kesehatan terbaik dengan dokter profesional dan fasilitas modern.',
             'seo_meta_keywords' => 'rumah sakit, dokter, kesehatan, rawat inap, rawat jalan'
@@ -103,6 +106,9 @@ function getSettings() {
         'theme_color_primary' => BRAND_PRIMARY,
         'theme_color_secondary' => BRAND_SECONDARY,
         'theme_color_accent' => BRAND_ACCENT,
+        'social_instagram' => '#',
+        'social_tiktok' => '#',
+        'social_twitter' => '#',
         'seo_meta_title' => 'RS Taman Harapan Baru - Rumah Sakit Terpercaya',
         'seo_meta_description' => 'RS Taman Harapan Baru menyediakan pelayanan kesehatan terbaik dengan dokter profesional dan fasilitas modern.',
         'seo_meta_keywords' => 'rumah sakit, dokter, kesehatan, rawat inap, rawat jalan'
