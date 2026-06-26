@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/rsthbid/public_html
+    - /bin/rsync -adpv --exclude='.git' --exclude='.cpanel.yml' /home/rsthbid/public_html_git/ $DEPLOYPATH
