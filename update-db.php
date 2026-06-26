@@ -67,6 +67,10 @@ try {
         echo "color_secondary already exists in services table<br>";
     }
     
+    // Update category of "Kamar VVIP" to "VVIP" if exists
+    $pdo->exec("UPDATE rooms SET category = 'VVIP' WHERE name = 'Kamar VVIP' OR id = 2");
+    echo "Updated category of Kamar VVIP/id 2 to VVIP<br>";
+
     echo "<br>Database update complete! <a href='index.php'>Go to website</a> | <a href='admin.php'>Go to admin</a>";
     
 } catch (Exception $e) {

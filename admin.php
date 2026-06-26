@@ -43,7 +43,7 @@ $pdo = getDB();
 $message = '';
 $messageType = 'success';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
+if (($_SERVER['REQUEST_METHOD'] === 'POST' || $action === 'delete' || $action === 'toggle_active') && $isLoggedIn) {
     try {
         if ($page === 'settings') {
             $hospitalName = $_POST['hospital_name'] ?? '';
@@ -990,6 +990,7 @@ exit;
                                     <div class="col-md-4"><input type="text" class="form-control" name="name" placeholder="Nama Kamar" required value="<?php echo htmlspecialchars($editItem['name'] ?? ''); ?>"></div>
                                     <div class="col-md-4">
                                         <select class="form-select" name="category">
+                                            <option value="VVIP" <?php echo (($editItem['category'] ?? '') === 'VVIP') ? 'selected' : ''; ?>>VVIP</option>
                                             <option value="VIP" <?php echo (($editItem['category'] ?? '') === 'VIP') ? 'selected' : ''; ?>>VIP</option>
                                             <option value="Kelas 1" <?php echo (($editItem['category'] ?? '') === 'Kelas 1') ? 'selected' : ''; ?>>Kelas 1</option>
                                             <option value="Kelas 2" <?php echo (($editItem['category'] ?? '') === 'Kelas 2') ? 'selected' : ''; ?>>Kelas 2</option>
@@ -1039,6 +1040,7 @@ exit;
                                     <div class="col-md-4"><input type="text" class="form-control" name="name" placeholder="Nama Kamar" required></div>
                                     <div class="col-md-4">
                                         <select class="form-select" name="category">
+                                            <option value="VVIP">VVIP</option>
                                             <option value="VIP">VIP</option>
                                             <option value="Kelas 1">Kelas 1</option>
                                             <option value="Kelas 2">Kelas 2</option>
